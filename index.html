@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Eva Air - Đặt vé máy bay giá rẻ, chuyến bay nội địa và quốc tế. Ưu đãi độc quyền, hoàn vé dễ dàng, thanh toán an toàn. Khám phá dịch vụ hàng không cao cấp cùng Eva Air.">
+    
+    <meta name="keywords" content="Eva Air, vé máy bay Eva Air, đặt vé Eva Air online, vé máy bay giá rẻ Eva Air, chuyến bay Eva Air, hãng hàng không Eva Air, Eva Air Việt Nam, Eva Airways, Eva Air khuyến mãi, Eva Air check in, vé quốc tế Eva Air, lịch bay Eva Air, Eva Air booking, Eva Air flights, Eva Air Vietnam, Eva Air tickets">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Eva Air - Đặt Vé Máy Bay Trực Tuyến | Chuyến Bay Nội Địa & Quốc Tế">
+    <meta property="og:description" content="Đặt vé máy bay Eva Air giá tốt nhất. Tìm kiếm, so sánh và đặt vé dễ dàng. Ưu đãi độc quyền cho chuyến bay nội địa và quốc tế.">
+    <meta property="og:type" content="website">
+    
+    <!-- Additional Meta Tags -->
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Vietnamese">
+    <meta name="revisit-after" content="7 days">
+    
+    <title>Eva Air - Đặt Vé Máy Bay Trực Tuyến | Chuyến Bay Nội Địa & Quốc Tế</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <div class="notification-title" id="notification-title">Thành công!</div>
+        <div class="notification-message" id="notification-message">Đã tìm thấy chuyến bay phù hợp.</div>
+    </div>
+
+    <!-- Promotional Banner -->
+    <div class="promo-banner">
+        🎉 Ưu đãi đặc biệt: Giảm 20% cho vé máy bay quốc tế - Áp dụng đến 31/12/2024
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M21 16V8C21 6.89543 20.1046 6 19 6H17L12 3L7 6H5C3.89543 6 3 6.89543 3 8V16C3 17.1046 3.89543 18 5 18H19C20.1046 18 21 17.1046 21 16Z"
+                        stroke="currentColor" stroke-width="2" />
+                    <path d="M3 10H21" stroke="currentColor" stroke-width="2" />
+                    <path d="M7 14H7.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    <path d="M17 14H17.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+                Eva Air
+            </a>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="#home">Trang chủ</a></li>
+                    <li><a href="#flights">Chuyến bay</a></li>
+                    <li><a href="#destinations">Điểm đến</a></li>
+                    <li><a href="#services">Dịch vụ</a></li>
+                    <li><a href="#news">Tin tức</a></li>
+                    <li><a href="#contact" class="cta-button">Liên hệ</a></li>
+                </ul>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    ☰
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Bay Cùng <span class="highlight">Eva Air</span><br>Khám Phá Thế Giới</h1>
+                <p>Đặt vé máy bay dễ dàng, giá cả hợp lý. Hành trình của bạn bắt đầu từ đây!</p>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Điểm đến</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">Hãng hàng không</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Hỗ trợ</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="booking-form">
+                <h3>🛫 Đặt vé máy bay</h3>
+                <div class="form-tabs">
+                    <button class="tab active" data-type="roundtrip">Khứ hồi</button>
+                    <button class="tab" data-type="oneway">Một chiều</button>
+                    <button class="tab" data-type="multicity">Nhiều chặng</button>
+                </div>
+
+                <form id="booking-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="from">Điểm đi</label>
+                            <input type="text" id="from" placeholder="Hà Nội (HAN)" required autocomplete="off">
+                            <div class="autocomplete-dropdown" id="from-dropdown"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="to">Điểm đến</label>
+                            <input type="text" id="to" placeholder="TP.HCM (SGN)" required autocomplete="off">
+                            <div class="autocomplete-dropdown" id="to-dropdown"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="departure">Ngày đi</label>
+                            <input type="date" id="departure" required>
+                        </div>
+                        <div class="form-group" id="return-date">
+                            <label for="return">Ngày về</label>
+                            <input type="date" id="return" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Hành khách & Hạng vé</label>
+                            <div class="passenger-class">
+                                <select id="passengers">
+                                    <option value="1">1 Người lớn</option>
+                                    <option value="2">2 Người lớn</option>
+                                    <option value="3">3 Người lớn</option>
+                                    <option value="4">4+ Người lớn</option>
+                                </select>
+                                <select id="class">
+                                    <option value="economy">Phổ thông</option>
+                                    <option value="premium">Phổ thông đặc biệt</option>
+                                    <option value="business">Thương gia</option>
+                                    <option value="first">Hạng nhất</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="search-btn" id="search-btn">
+                        🔍 Tìm chuyến bay
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="services">
+        <div class="section-title">
+            <h2>Tại Sao Chọn Eva Air?</h2>
+            <p>Trải nghiệm dịch vụ đặt vé tốt nhất với nhiều ưu đãi hấp dẫn</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Giá Tốt Nhất</h3>
+                <p>Cam kết giá vé cạnh tranh nhất thị trường với nhiều ưu đãi độc quyền</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>An Toàn & Bảo Mật</h3>
+                <p>Hệ thống thanh toán an toàn, bảo mật thông tin khách hàng tuyệt đối</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Đặt Vé Nhanh Chóng</h3>
+                <p>Quy trình đặt vé đơn giản, nhanh chóng chỉ trong vài bước</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="section-title">
+            <h2>Dịch Vụ Của Chúng Tôi</h2>
+            <p>Giải pháp du lịch toàn diện cho mọi nhu cầu</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-item">
+                <div class="service-icon">✈️</div>
+                <h3>Vé Máy Bay</h3>
+                <p>Nội địa & Quốc tế</p>
+            </div>
+            <div class="service-item">
+                <div class="service-icon">🏨</div>
+                <h3>Đặt Khách Sạn</h3>
+                <p>Giá ưu đãi đặc biệt</p>
+            </div>
+            <div class="service-item">
+                <div class="service-icon">🏖️</div>
+                <h3>Tour Du Lịch</h3>
+                <p>Trọn gói tiện lợi</p>
+            </div>
+            <div class="service-item">
+                <div class="service-icon">🛡️</div>
+                <h3>Bảo Hiểm</h3>
+                <p>An tâm mọi chuyến đi</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Destinations -->
+    <section class="destinations" id="destinations">
+        <div class="section-title">
+            <h2>Điểm Đến Phổ Biến</h2>
+            <p>Khám phá những địa điểm du lịch hấp dẫn nhất</p>
+        </div>
+
+        <div class="destinations-grid">
+            <div class="destination-card">
+                <div class="destination-img"
+                    style="background-image: url(https://tokyogaijins.com/wp-content/uploads/2021/12/fuji-sengen4.jpg);"
+                    alt="Tháp Tokyo, Nhật Bản - Điểm đến Eva Air">
+                </div>
+                <div class="destination-info">
+                    <h3>Tokyo, Nhật Bản</h3>
+                    <p>Thành phố của công nghệ và văn hóa</p>
+                    <span class="price-tag">Từ 8.900.000đ</span>
+                </div>
+            </div>
+            <div class="destination-card">
+                <div class="destination-img"
+                    style="background: url(https://skycapnews.com/wp-content/uploads/2016/04/Paris-France-The-City-of-Love-1024x436.jpg)"
+                    alt="Tháp Eiffel ở Paris, Pháp - Khám phá với Eva Air">
+                </div>
+                <div class="destination-info">
+                    <h3>Paris, Pháp</h3>
+                    <p>Kinh đô ánh sáng lãng mạn</p>
+                    <span class="price-tag">Từ 18.500.000đ</span>
+                </div>
+            </div>
+            <div class="destination-card">
+                <div class="destination-img"
+                    style="background: url(https://tse1.mm.bing.net/th/id/OIP.N5Q7Qnpkgh7g1tMXkPjTtQHaHY?rs=1&pid=ImgDetMain&o=7&rm=3);"
+                    alt="Đền Uluwatu ở Bali, Indonesia - Du lịch Eva Air">
+                </div>
+                <div class="destination-info">
+                    <h3>Bali, Indonesia</h3>
+                    <p>Thiên đường nhiệt đới</p>
+                    <span class="price-tag">Từ 3.200.000đ</span>
+                </div>
+            </div>
+            <div class="destination-card">
+                <div class="destination-img"
+                    style="background: url(https://png.pngtree.com/background/20230518/original/pngtree-dubai-skyline-picture-image_2647301.jpg);"
+                    alt="Tòa nhà chọc trời ở Dubai, UAE - Chuyến bay Eva Air">
+                </div>
+                <div class="destination-info">
+                    <h3>Dubai, UAE</h3>
+                    <p>Thành phố của tương lai</p>
+                    <span class="price-tag">Từ 12.700.000đ</span>
+                </div>
+            </div>
+            <div class="destination-card">
+                <div class="destination-img"
+                    style="background: url(https://naimbrundage.com/wp-content/uploads/2021/09/Singapore.png);"
+                    alt="Toà nhà Marina Bay Sands ở Singapore - Eva Air">
+                </div>
+                <div class="destination-info">
+                    <h3>Singapore</h3>
+                    <p>Đảo quốc sư tử hiện đại</p>
+                    <span class="price-tag">Từ 2.800.000đ</span>
+                </div>
+            </div>
+            <div class="destination-card">
+                <div class="destination-img"
+                    style="background: url(https://live.staticflickr.com/65535/49036989561_df3d8eaaaf.jpg);"
+                    alt="Tháp Namsan ở Seoul, Hàn Quốc - Vé máy bay Eva Air">
+                </div>
+                <div class="destination-info">
+                    <h3>Seoul, Hàn Quốc</h3>
+                    <p>Xứ sở kim chi sôi động</p>
+                    <span class="price-tag">Từ 6.500.000đ</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="news" id="news">
+        <div class="section-title">
+            <h2>Tin Tức & Ưu Đãi</h2>
+            <p>Cập nhật thông tin mới nhất về chuyến bay và khuyến mãi</p>
+        </div>
+
+        <div class="carousel-container">
+            <div class="carousel-track" id="news-carousel-track">
+                <!-- News items will be dynamically loaded here by JavaScript -->
+                <div class="news-slide">
+
+                </div>
+            </div>
+            <button class="carousel-button prev" id="news-carousel-prev">&#10094;</button>
+            <button class="carousel-button next" id="news-carousel-next">&#10095;</button>
+            <div class="carousel-pagination" id="news-carousel-pagination"></div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Sẵn Sàng Cho Chuyến Bay Tiếp Theo?</h2>
+            <p>Đăng ký ngay để nhận ưu đãi độc quyền và cập nhật về các chuyến bay giá rẻ</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn-primary">Đăng Ký Ngay</a>
+                <a href="#" class="btn-secondary">Tìm Hiểu Thêm</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Về Eva Air</h3>
+                <p>Đối tác tin cậy cho mọi chuyến bay của bạn. Chúng tôi cam kết mang đến trải nghiệm đặt vé tốt nhất
+                    với dịch vụ chuyên nghiệp và giá cả cạnh tranh.</p>
+                <div class="social-links">
+                    <a href="#" title="Facebook">📘</a>
+                    <a href="#" title="Instagram">📷</a>
+                    <a href="#" title="Twitter">🐦</a>
+                    <a href="#" title="YouTube">📺</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Dịch Vụ</h3>
+                <ul>
+                    <li><a href="#">Vé máy bay nội địa</a></li>
+                    <li><a href="#">Vé máy bay quốc tế</a></li>
+                    <li><a href="#">Combo vé + khách sạn</a></li>
+                    <li><a href="#">Bảo hiểm du lịch</a></li>
+                    <li><a href="#">Tour du lịch</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Hỗ Trợ</h3>
+                <ul>
+                    <li><a href="#">Trung tâm trợ giúp</a></li>
+                    <li><a href="#">Hướng dẫn đặt vé</a></li>
+                    <li><a href="#">Chính sách hoàn/hủy</a></li>
+                    <li><a href="#">Câu hỏi thường gặp</a></li>
+                    <li><a href="#">Điều khoản sử dụng</a></li>
+                    <li><a href="#">Chính sách bảo mật</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Liên Hệ</h3>
+                <ul>
+                    <li>📍 Tầng 1, Toà nhà Vietphone, 64 Nguyễn Đình Chiểu, P. Đa Kao, Quận 1, Tp.HCM</li>
+                    <li>📞 (+84)28 36 227 747</li>
+                    <li>✉️ info@Eva Air.vn</li>
+                    <li>⏰ Hỗ trợ 24/7</li>
+                </ul>
+                <div style="margin-top: 1rem;">
+                    <h4 style="color: var(--gold-color); margin-bottom: 0.5rem;">Văn phòng đại diện:</h4>
+                    <ul>
+                        <li>TP.Hồ Chí Minh: Tầng 1, Toà nhà Vietphone, 64 Nguyễn Đình Chiểu, P. Đa Kao, Quận 1, Tp.HCM</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Eva Air. Tất cả quyền được bảo lưu.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
