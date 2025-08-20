@@ -1,52 +1,51 @@
-// Global variables
 let currentTripType = "roundtrip";
 
 // News data for carousel
 const newsArticles = [
   {
-    title: "Eva Air Ra Mắt Tuyến Bay Mới: TP.HCM - Sydney",
+    title: "Eva Air Ra Mắt Tuyến Bay Mới: TP.HCM - Sydney với Ưu Đãi Vé Máy Bay Eva Air",
     date: "20 Thg 8, 2024",
     excerpt:
-      "Eva Air hân hạnh thông báo ra mắt tuyến bay thẳng mới từ TP.HCM đến Sydney, Úc, bắt đầu từ ngày 1 tháng 10 năm 2024. Đặt vé ngay để nhận ưu đãi đặc biệt!",
+      "Eva Air hân hạnh thông báo ra mắt tuyến bay thẳng mới từ TP.HCM đến Sydney, Úc, bắt đầu từ ngày 1 tháng 10 năm 2024. Đặt vé máy bay Eva Air ngay để nhận ưu đãi đặc biệt!",
     image:
       "https://media.istockphoto.com/id/183214684/photo/runway.jpg?s=612x612&w=0&k=20&c=X2JeeXo4QIIpRU--NcAd8jjzuP7WW5V7RRV263zd4fs=",
   },
   {
-    title: "Ưu Đãi Đặc Biệt: Giảm Giá 30% Vé Thương Gia Đi Châu Âu",
+    title: "Ưu Đãi Đặc Biệt: Giảm Giá 30% Vé Thương Gia Chuyến Bay Eva Air Đi Châu Âu",
     date: "15 Thg 8, 2024",
     excerpt:
-      "Trải nghiệm dịch vụ đẳng cấp với vé hạng thương gia đi các thành phố lớn Châu Âu. Giảm ngay 30% khi đặt trước ngày 30 tháng 9.",
+      "Trải nghiệm dịch vụ đẳng cấp với vé hạng thương gia đi các thành phố lớn Châu Âu trên chuyến bay Eva Air. Giảm ngay 30% khi đặt trước ngày 30 tháng 9.",
     image:
       "https://image.shutterstock.com/image-photo/great-rocky-walls-odle-dolomites-260nw-2120625833.jpg",
   },
   {
-    title: "Eva Air Được VQAR Vinh Danh Hãng Hàng Không 5 Sao",
+    title: "Eva Air Được Vinh Danh Hãng Hàng Không 5 Sao về Chất Lượng Dịch Vụ Bay",
     date: "10 Thg 8, 2024",
     excerpt:
-      "Chúng tôi tự hào thông báo Eva Air đã được Tổ chức Đánh giá Hàng không Quốc tế (VQAR) trao tặng danh hiệu Hãng Hàng Không 5 Sao về chất lượng dịch vụ.",
+      "Chúng tôi tự hào thông báo Eva Air đã được Tổ chức Đánh giá Hàng không Quốc tế (VQAR) trao tặng danh hiệu Hãng Hàng Không 5 Sao về chất lượng dịch vụ các chuyến bay của Eva Air.",
     image:
       "https://www.shutterstock.com/image-vector/golden-laurel-crown-text-realistic-260nw-2434171633.jpg",
   },
   {
-    title: "Mẹo Du Lịch An Toàn Mùa Cao Điểm",
+    title: "Mẹo Du Lịch An Toàn Mùa Cao Điểm Cùng Eva Air",
     date: "1 Thg 8, 2024",
     excerpt:
-      "Bí quyết để có chuyến đi suôn sẻ và an toàn trong mùa du lịch cao điểm. Đừng bỏ lỡ những lời khuyên hữu ích từ Eva Air!",
+      "Bí quyết để có chuyến đi suôn sẻ và an toàn trong mùa du lịch cao điểm. Đừng bỏ lỡ những lời khuyên hữu ích từ Eva Air để kiểm tra chuyến bay của bạn!",
     image:
       "https://static.fishingbooker.com/public/images/destination/baners/c9ea93a7b748ae3069e7257ecc6a61e6.jpg",
   },
   {
-    title: "Khám Phá Đài Loan: Vùng Đất Của Những Điều Bất Ngờ",
+    title: "Khám Phá Đài Loan với Vé Máy Bay Eva Air Giá Rẻ",
     date: "25 Thg 7, 2024",
     excerpt:
-      "Đài Loan không chỉ nổi tiếng với trà sữa và ẩm thực đường phố, mà còn có vô vàn cảnh đẹp và trải nghiệm văn hóa độc đáo đang chờ bạn khám phá.",
+      "Đài Loan không chỉ nổi tiếng với trà sữa và ẩm thực đường phố, mà còn có vô vàn cảnh đẹp và trải nghiệm văn hóa độc đáo đang chờ bạn khám phá. Tìm vé máy bay Eva Air đi Đài Loan ngay!",
     image: "https://live.staticflickr.com/8259/8627416075_2393b6d3b3.jpg",
   },
   {
-    title: "Chính Sách Hành Lý Mới Của Eva Air",
+    title: "Chính Sách Hành Lý Mới Nhất Của Hãng Hàng Không Eva Air",
     date: "20 Thg 7, 2024",
     excerpt:
-      "Cập nhật những thay đổi mới nhất về chính sách hành lý của Eva Air. Đảm bảo chuyến đi của bạn được thuận tiện nhất.",
+      "Cập nhật những thay đổi mới nhất về chính sách hành lý của Eva Air. Đảm bảo chuyến đi của bạn được thuận tiện nhất với hãng hàng không Eva Air.",
     image: "https://www.shutterstock.com/shutterstock/videos/1039097177/thumb/8.jpg?ip=x480",
   },
 ];
@@ -369,7 +368,7 @@ window.addEventListener("scroll", () => {
 
   if (currentScroll > 100) {
     header.style.background =
-      "linear-gradient(135deg, rgba(0,51,102,0.95) 0%, rgba(0,102,204,0.95) 100%)";
+      "linear-gradient(135deg, #4b7d6b 0%, #7ca194 100%);";
     header.style.backdropFilter = "blur(20px)";
   } else {
     header.style.background = "";
@@ -666,3 +665,23 @@ window.addEventListener("load", () => {
   adjustNewsItemsPerSlide();
 });
 window.addEventListener("resize", adjustNewsItemsPerSlide);
+
+// FAQ Accordion functionality
+document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+        const faqItem = button.parentNode;
+        const faqAnswer = button.nextElementSibling;
+
+        // Close all other open FAQ items
+        document.querySelectorAll('.faq-item').forEach(item => {
+            if (item !== faqItem) {
+                item.querySelector('.faq-question').classList.remove('active');
+                item.querySelector('.faq-answer').classList.remove('show');
+            }
+        });
+
+        // Toggle the clicked FAQ item
+        button.classList.toggle('active');
+        faqAnswer.classList.toggle('show');
+    });
+});
