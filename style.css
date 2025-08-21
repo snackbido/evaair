@@ -1265,7 +1265,7 @@ footer {
 .notification {
     position: fixed;
     top: 100px;
-    right: -300px;
+    right: -114%;
     background: var(--white);
     padding: 1rem 1.5rem;
     border-radius: 10px;
