@@ -97,6 +97,13 @@ function showNotification(title, message, isError = false) {
 
   notification.className = `notification show ${isError ? "error" : ""}`;
 
+  // Make screen readers announce the notification and focus for keyboard users
+  try {
+    notification.focus();
+  } catch (e) {
+    // ignore
+  }
+
   setTimeout(() => {
     notification.classList.remove("show");
   }, 4000);
@@ -110,13 +117,27 @@ function hideLoading() {
   document.getElementById("loading-overlay").classList.remove("show");
 }
 
-// Mobile menu functionality
-document
-  .getElementById("mobile-menu-btn")
-  .addEventListener("click", function () {
-    const navMenu = document.getElementById("nav-menu");
-    navMenu.classList.toggle("show");
+// Mobile menu functionality (single initializer with transitions so close also animates)
+const mobileBtn = document.getElementById('mobile-menu-btn');
+const navMenu = document.getElementById('nav-menu');
+if (mobileBtn && navMenu) {
+  // Ensure a transition is present so both adding and removing `.show` animate
+  navMenu.style.transition = 'max-height 320ms ease, transform 300ms cubic-bezier(.2,.9,.2,1), opacity 200ms ease';
+
+  mobileBtn.addEventListener('click', function () {
+    const expanded = this.getAttribute('aria-expanded') === 'true';
+    if (!expanded) {
+      navMenu.classList.add('show');
+      this.setAttribute('aria-expanded', 'true');
+      this.setAttribute('aria-label', 'Đóng menu');
+    } else {
+      // removing the class will animate the close because transition is set above
+      navMenu.classList.remove('show');
+      this.setAttribute('aria-expanded', 'false');
+      this.setAttribute('aria-label', 'Mở menu điều hướng');
+    }
   });
+}
 
 // Tab switching functionality
 function switchTab(element, type) {
@@ -155,13 +176,14 @@ function setupAutocomplete(inputId, dropdownId) {
   const input = document.getElementById(inputId);
   const dropdown = document.getElementById(dropdownId);
   let selectedIndex = -1;
+  let options = [];
 
   input.addEventListener("input", function () {
     const value = this.value.toLowerCase();
     dropdown.innerHTML = "";
     selectedIndex = -1;
 
-    if (value.length > 0) {
+  if (value.length > 0) {
       const matches = airports
         .filter(
           (airport) =>
@@ -172,10 +194,13 @@ function setupAutocomplete(inputId, dropdownId) {
         .slice(0, 5); // Limit to 5 results
 
       if (matches.length > 0) {
+        dropdown.innerHTML = "";
         dropdown.style.display = "block";
-        matches.forEach((airport, index) => {
+        options = matches.map((airport, index) => {
           const item = document.createElement("div");
           item.className = "autocomplete-item";
+          item.setAttribute('role', 'option');
+          item.id = `${dropdownId}-option-${index}`;
           item.innerHTML = `
                                 <strong>${airport.city} (${airport.code})</strong><br>
                                 <small style="color: #666;">${airport.name}</small>
@@ -183,11 +208,16 @@ function setupAutocomplete(inputId, dropdownId) {
           item.addEventListener("click", function () {
             input.value = formatAirport(airport);
             dropdown.style.display = "none";
+            input.setAttribute('aria-expanded', 'false');
           });
           dropdown.appendChild(item);
+          return { element: item, airport };
         });
+        input.setAttribute('aria-expanded', 'true');
       } else {
         dropdown.style.display = "none";
+        input.setAttribute('aria-expanded', 'false');
+        options = [];
       }
     } else {
       dropdown.style.display = "none";
@@ -201,16 +231,23 @@ function setupAutocomplete(inputId, dropdownId) {
       e.preventDefault();
       selectedIndex = Math.min(selectedIndex + 1, items.length - 1);
       updateSelection(items);
+      if (selectedIndex >= 0) input.setAttribute('aria-activedescendant', items[selectedIndex].id);
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
       selectedIndex = Math.max(selectedIndex - 1, -1);
       updateSelection(items);
+      if (selectedIndex >= 0) input.setAttribute('aria-activedescendant', items[selectedIndex].id);
+      else input.removeAttribute('aria-activedescendant');
     } else if (e.key === "Enter" && selectedIndex >= 0) {
       e.preventDefault();
       items[selectedIndex].click();
+      input.removeAttribute('aria-activedescendant');
+      selectedIndex = -1;
     } else if (e.key === "Escape") {
       dropdown.style.display = "none";
+      input.setAttribute('aria-expanded', 'false');
       selectedIndex = -1;
+      input.removeAttribute('aria-activedescendant');
     }
   });
 
@@ -224,6 +261,7 @@ function setupAutocomplete(inputId, dropdownId) {
   document.addEventListener("click", function (e) {
     if (!input.contains(e.target) && !dropdown.contains(e.target)) {
       dropdown.style.display = "none";
+  input.setAttribute('aria-expanded', 'false');
     }
   });
 }
@@ -315,22 +353,13 @@ document
         `Đã tìm thấy 24 chuyến bay từ ${fromValue} đến ${toValue}. Đang chuyển hướng...`
       );
 
-      setTimeout(() => {
-        btn.innerHTML = "🔍 Tìm chuyến bay";
-        btn.style.background = "";
-        btn.disabled = false;
+          setTimeout(() => {
+            btn.innerHTML = "🔍 Tìm chuyến bay";
+            btn.style.background = "";
+            btn.disabled = false;
 
-        // In a real app, you would redirect to results page
-        console.log("Search params:", {
-          from: fromValue,
-          to: toValue,
-          departure: departureValue,
-          return: returnValue,
-          passengers: passengersValue,
-          class: classValue,
-          tripType: currentTripType,
-        });
-      }, 3000);
+            // In a real app, you would redirect to results page
+          }, 3000);
     }, 2000);
   });
 
@@ -362,28 +391,41 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 
 // Header scroll effects
 let lastScroll = 0;
-window.addEventListener("scroll", () => {
-  const header = document.querySelector("header");
-  const currentScroll = window.pageYOffset;
+// Improve scroll handling: use passive listener and rAF to avoid layout thrash
+(function () {
+  const header = document.querySelector('header');
+  let ticking = false;
 
-  if (currentScroll > 100) {
-    header.style.background =
-      "linear-gradient(135deg, #4b7d6b 0%, #7ca194 100%);";
-    header.style.backdropFilter = "blur(20px)";
-  } else {
-    header.style.background = "";
-    header.style.backdropFilter = "";
+  function onScroll() {
+    const currentScroll = window.pageYOffset;
+
+    if (!ticking) {
+      window.requestAnimationFrame(function () {
+        if (currentScroll > 100) {
+          header.style.background = 'linear-gradient(135deg, #4b7d6b 0%, #7ca194 100%)';
+          header.style.backdropFilter = 'blur(20px)';
+        } else {
+          header.style.background = '';
+          header.style.backdropFilter = '';
+        }
+
+        // Hide/show header on scroll (optional)
+        if (currentScroll > lastScroll && currentScroll > 200) {
+          header.style.transform = 'translateY(-100%)';
+        } else {
+          header.style.transform = 'translateY(0)';
+        }
+
+        lastScroll = currentScroll;
+        ticking = false;
+      });
+      ticking = true;
+    }
   }
 
-  // Hide/show header on scroll (optional)
-  if (currentScroll > lastScroll && currentScroll > 200) {
-    header.style.transform = "translateY(-100%)";
-  } else {
-    header.style.transform = "translateY(0)";
-  }
-
-  lastScroll = currentScroll;
-});
+  // Use passive listener to improve scroll performance
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
 
 // Parallax effect for hero section
 // window.addEventListener("scroll", () => {
@@ -602,13 +644,23 @@ function renderNewsCarousel() {
     });
     newsCarouselTrack.appendChild(slide);
 
-    // Create pagination dot
-    const dot = document.createElement("span");
+    // Create pagination dot (accessible)
+    const dot = document.createElement("button");
     dot.classList.add("pagination-dot");
+    dot.setAttribute('role', 'tab');
+    dot.setAttribute('aria-selected', 'false');
+    dot.setAttribute('tabindex', '-1');
     dot.dataset.slideIndex = i;
     dot.addEventListener("click", () => {
       currentNewsSlide = i;
       updateNewsCarousel();
+    });
+    dot.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        currentNewsSlide = i;
+        updateNewsCarousel();
+      }
     });
     newsCarouselPagination.appendChild(dot);
   }
@@ -665,6 +717,34 @@ window.addEventListener("load", () => {
   adjustNewsItemsPerSlide();
 });
 window.addEventListener("resize", adjustNewsItemsPerSlide);
+
+// Back to top button functionality
+const backToTopBtn = document.getElementById('back-to-top');
+function checkScrollForBackToTop() {
+  if (!backToTopBtn) return;
+  if (window.pageYOffset > 400) {
+    backToTopBtn.classList.add('show');
+  } else {
+    backToTopBtn.classList.remove('show');
+  }
+}
+
+window.addEventListener('scroll', checkScrollForBackToTop);
+window.addEventListener('load', checkScrollForBackToTop);
+
+if (backToTopBtn) {
+  backToTopBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  backToTopBtn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
+}
 
 // FAQ Accordion functionality
 document.querySelectorAll('.faq-question').forEach(button => {
