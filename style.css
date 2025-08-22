@@ -115,7 +115,7 @@ body {
 /* Header */
 header {
     background: var(--gradient-primary);
-    padding: 1rem 0;
+    padding: 1.2rem 0;
     position: fixed;
     width: 100%;
     top: 0;
@@ -128,10 +128,12 @@ header {
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .logo {
@@ -158,8 +160,11 @@ header {
 nav ul {
     list-style: none;
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
     align-items: center;
+    flex-wrap: nowrap;
+    margin: 0;
+    padding: 0;
 }
 
 /* Mobile menu animation: transform + opacity for smoother open/close */
@@ -307,6 +312,9 @@ nav a:hover::after {
     animation: fadeInUp 0.8s ease 0.4s backwards;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .booking-form h3 {
@@ -376,11 +384,16 @@ nav a:hover::after {
 .form-group select {
     width: 100%;
     padding: 1rem;
-    border: 2px solid #e0e0e0;
+    border: 2px solid #e0e0f0;
     border-radius: 10px;
     font-size: 1rem;
     transition: all 0.3s ease;
     background: var(--white);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    min-height: 48px; /* Minimum touch target size */
+    box-sizing: border-box;
 }
 
 .form-group input:focus,
@@ -413,6 +426,21 @@ nav a:hover::after {
     overflow: hidden;
 }
 
+.search-btn.cta-main {
+    background: linear-gradient(135deg, #ff6b35, #ff8c57);
+    font-size: 1.3rem;
+    padding: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 20px rgba(255, 107, 53, 0.3);
+    animation: pulse 2s infinite;
+}
+
+.search-btn.cta-main:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4);
+}
+
 .search-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 30px rgba(45, 90, 71, 0.4);
@@ -429,6 +457,23 @@ nav a:hover::after {
             var(--secondary-color) 100%);
     background-size: 200px 100%;
     animation: shimmer 2s infinite;
+}
+
+/* Disclaimer Banner */
+.disclaimer-banner {
+    background: rgba(255, 0, 0, 0.1);
+    padding: 0.8rem 0;
+    text-align: center;
+    color: #d32f2f;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    font-size: 0.9rem;
+}
+
+.disclaimer-text {
+    display: block;
+    text-align: center;
 }
 
 /* Promotional Banner */
@@ -1094,7 +1139,135 @@ footer {
     opacity: 0.8;
 }
 
+/* Foldable Device Optimizations */
+@media (max-width: 400px) {
+    .booking-form {
+        margin: 1rem;
+        padding: 1rem;
+        width: calc(100% - 2rem);
+        max-width: 100%;
+    }
+
+    .form-tabs {
+        padding: 0.3rem;
+        gap: 0.3rem;
+    }
+
+    .tab {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .search-btn {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    .search-btn.cta-main {
+        padding: 1.2rem;
+        font-size: 1.1rem;
+    }
+
+    .hero-content {
+        padding: 4rem 1rem 1rem;
+    }
+
+    .hero-text h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-text p {
+        font-size: 1rem;
+    }
+}
+
+/* Galaxy Z Fold 5 Specific */
+@media screen and (device-width: 344px) and (device-height: 882px) {
+    .booking-form {
+        margin: 0.5rem;
+        padding: 0.8rem;
+        width: calc(100% - 1rem);
+    }
+
+    .form-tabs {
+        margin-bottom: 1rem;
+    }
+
+    .form-group {
+        margin-bottom: 0.8rem;
+    }
+
+    .form-group input,
+    .form-group select {
+        font-size: 14px;
+    }
+
+    .hero-content {
+        padding: 3rem 0.5rem 1rem;
+    }
+}
+
 /* Responsive Design */
+/* Tablet Optimization */
+@media (max-width: 1024px) {
+    .nav-container {
+        padding: 0 0.8rem;
+    }
+
+    nav ul {
+        gap: 1rem;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .cta-button {
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* Specific iPad/Surface Pro Optimization */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .nav-container {
+        flex-wrap: nowrap;
+    }
+
+    nav {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+        margin-left: 1rem;
+    }
+
+    nav::-webkit-scrollbar {
+        display: none; /* Chrome, Safari and Opera */
+    }
+
+    nav ul {
+        padding: 0.5rem 0;
+        margin: 0;
+        flex-wrap: nowrap;
+        width: auto;
+    }
+
+    nav ul li {
+        flex-shrink: 0;
+    }
+}
+
 @media (max-width: 968px) {
     .hero-content {
         grid-template-columns: 1fr;
