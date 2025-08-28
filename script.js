@@ -1,9 +1,7 @@
-let currentTripType = "roundtrip";
-
-// News data for carousel
 const newsArticles = [
   {
-    title: "Eva Air Ra Mắt Tuyến Bay Mới: TP.HCM - Sydney với Ưu Đãi Vé Máy Bay Eva Air",
+    title:
+      "Eva Air Ra Mắt Tuyến Bay Mới: TP.HCM - Sydney với Ưu Đãi Vé Máy Bay Eva Air",
     date: "20 Thg 8, 2024",
     excerpt:
       "Eva Air hân hạnh thông báo ra mắt tuyến bay thẳng mới từ TP.HCM đến Sydney, Úc, bắt đầu từ ngày 1 tháng 10 năm 2024. Đặt vé máy bay Eva Air ngay để nhận ưu đãi đặc biệt!",
@@ -11,7 +9,8 @@ const newsArticles = [
       "https://media.istockphoto.com/id/183214684/photo/runway.jpg?s=612x612&w=0&k=20&c=X2JeeXo4QIIpRU--NcAd8jjzuP7WW5V7RRV263zd4fs=",
   },
   {
-    title: "Ưu Đãi Đặc Biệt: Giảm Giá 30% Vé Thương Gia Chuyến Bay Eva Air Đi Châu Âu",
+    title:
+      "Ưu Đãi Đặc Biệt: Giảm Giá 30% Vé Thương Gia Chuyến Bay Eva Air Đi Châu Âu",
     date: "15 Thg 8, 2024",
     excerpt:
       "Trải nghiệm dịch vụ đẳng cấp với vé hạng thương gia đi các thành phố lớn Châu Âu trên chuyến bay Eva Air. Giảm ngay 30% khi đặt trước ngày 30 tháng 9.",
@@ -19,7 +18,8 @@ const newsArticles = [
       "https://image.shutterstock.com/image-photo/great-rocky-walls-odle-dolomites-260nw-2120625833.jpg",
   },
   {
-    title: "Eva Air Được Vinh Danh Hãng Hàng Không 5 Sao về Chất Lượng Dịch Vụ Bay",
+    title:
+      "Eva Air Được Vinh Danh Hãng Hàng Không 5 Sao về Chất Lượng Dịch Vụ Bay",
     date: "10 Thg 8, 2024",
     excerpt:
       "Chúng tôi tự hào thông báo Eva Air đã được Tổ chức Đánh giá Hàng không Quốc tế (VQAR) trao tặng danh hiệu Hãng Hàng Không 5 Sao về chất lượng dịch vụ các chuyến bay của Eva Air.",
@@ -46,69 +46,12 @@ const newsArticles = [
     date: "20 Thg 7, 2024",
     excerpt:
       "Cập nhật những thay đổi mới nhất về chính sách hành lý của Eva Air. Đảm bảo chuyến đi của bạn được thuận tiện nhất với hãng hàng không Eva Air.",
-    image: "https://www.shutterstock.com/shutterstock/videos/1039097177/thumb/8.jpg?ip=x480",
+    image:
+      "https://www.shutterstock.com/shutterstock/videos/1039097177/thumb/8.jpg?ip=x480",
   },
-];
-// Airport data with Vietnamese names
-const airports = [
-  { code: "HAN", city: "Hà Nội", name: "Sân bay Nội Bài" },
-  { code: "SGN", city: "TP.HCM", name: "Sân bay Tân Sơn Nhất" },
-  { code: "DAD", city: "Đà Nẵng", name: "Sân bay Đà Nẵng" },
-  { code: "CXR", city: "Nha Trang", name: "Sân bay Cam Ranh" },
-  { code: "PQC", city: "Phú Quốc", name: "Sân bay Phú Quốc" },
-  { code: "VCA", city: "Cần Thơ", name: "Sân bay Cần Thơ" },
-  { code: "HUI", city: "Huế", name: "Sân bay Phú Bài" },
-  { code: "DLI", city: "Đà Lạt", name: "Sân bay Liên Khương" },
-  { code: "BMV", city: "Buôn Ma Thuột", name: "Sân bay Buôn Ma Thuột" },
-  { code: "VDH", city: "Đông Hà", name: "Sân bay Đông Hà" },
-  { code: "TBB", city: "Tuy Hòa", name: "Sân bay Tuy Hòa" },
-  { code: "VCS", city: "Côn Đảo", name: "Sân bay Côn Đảo" },
-  // International airports
-  { code: "BKK", city: "Bangkok", name: "Suvarnabhumi Airport" },
-  { code: "SIN", city: "Singapore", name: "Changi Airport" },
-  { code: "KUL", city: "Kuala Lumpur", name: "KLIA" },
-  { code: "NRT", city: "Tokyo", name: "Narita Airport" },
-  { code: "ICN", city: "Seoul", name: "Incheon Airport" },
-  { code: "HKG", city: "Hong Kong", name: "Hong Kong Airport" },
-  { code: "TPE", city: "Taipei", name: "Taoyuan Airport" },
-  { code: "CGK", city: "Jakarta", name: "Soekarno-Hatta" },
-  { code: "MNL", city: "Manila", name: "Ninoy Aquino Airport" },
-  { code: "DPS", city: "Bali", name: "Ngurah Rai Airport" },
-  { code: "CDG", city: "Paris", name: "Charles de Gaulle" },
-  { code: "LHR", city: "London", name: "Heathrow Airport" },
-  { code: "DXB", city: "Dubai", name: "Dubai International" },
-  { code: "SYD", city: "Sydney", name: "Kingsford Smith" },
-  { code: "LAX", city: "Los Angeles", name: "LAX Airport" },
-  { code: "JFK", city: "New York", name: "JFK Airport" },
 ];
 
 // Utility functions
-function formatAirport(airport) {
-  return `${airport.city} (${airport.code})`;
-}
-
-function showNotification(title, message, isError = false) {
-  const notification = document.getElementById("notification");
-  const titleEl = document.getElementById("notification-title");
-  const messageEl = document.getElementById("notification-message");
-
-  titleEl.textContent = title;
-  messageEl.textContent = message;
-
-  notification.className = `notification show ${isError ? "error" : ""}`;
-
-  // Make screen readers announce the notification and focus for keyboard users
-  try {
-    notification.focus();
-  } catch (e) {
-    // ignore
-  }
-
-  setTimeout(() => {
-    notification.classList.remove("show");
-  }, 4000);
-}
-
 function showLoading() {
   document.getElementById("loading-overlay").classList.add("show");
 }
@@ -118,23 +61,24 @@ function hideLoading() {
 }
 
 // Mobile menu functionality (single initializer with transitions so close also animates)
-const mobileBtn = document.getElementById('mobile-menu-btn');
-const navMenu = document.getElementById('nav-menu');
+const mobileBtn = document.getElementById("mobile-menu-btn");
+const navMenu = document.getElementById("nav-menu");
 if (mobileBtn && navMenu) {
   // Ensure a transition is present so both adding and removing `.show` animate
-  navMenu.style.transition = 'max-height 320ms ease, transform 300ms cubic-bezier(.2,.9,.2,1), opacity 200ms ease';
+  navMenu.style.transition =
+    "max-height 320ms ease, transform 300ms cubic-bezier(.2,.9,.2,1), opacity 200ms ease";
 
-  mobileBtn.addEventListener('click', function () {
-    const expanded = this.getAttribute('aria-expanded') === 'true';
+  mobileBtn.addEventListener("click", function () {
+    const expanded = this.getAttribute("aria-expanded") === "true";
     if (!expanded) {
-      navMenu.classList.add('show');
-      this.setAttribute('aria-expanded', 'true');
-      this.setAttribute('aria-label', 'Đóng menu');
+      navMenu.classList.add("show");
+      this.setAttribute("aria-expanded", "true");
+      this.setAttribute("aria-label", "Đóng menu");
     } else {
       // removing the class will animate the close because transition is set above
-      navMenu.classList.remove('show');
-      this.setAttribute('aria-expanded', 'false');
-      this.setAttribute('aria-label', 'Mở menu điều hướng');
+      navMenu.classList.remove("show");
+      this.setAttribute("aria-expanded", "false");
+      this.setAttribute("aria-label", "Mở menu điều hướng");
     }
   });
 }
@@ -171,198 +115,6 @@ document.querySelectorAll(".tab").forEach((tab) => {
   });
 });
 
-// Autocomplete functionality
-function setupAutocomplete(inputId, dropdownId) {
-  const input = document.getElementById(inputId);
-  const dropdown = document.getElementById(dropdownId);
-  let selectedIndex = -1;
-  let options = [];
-
-  input.addEventListener("input", function () {
-    const value = this.value.toLowerCase();
-    dropdown.innerHTML = "";
-    selectedIndex = -1;
-
-  if (value.length > 0) {
-      const matches = airports
-        .filter(
-          (airport) =>
-            airport.city.toLowerCase().includes(value) ||
-            airport.code.toLowerCase().includes(value) ||
-            airport.name.toLowerCase().includes(value)
-        )
-        .slice(0, 5); // Limit to 5 results
-
-      if (matches.length > 0) {
-        dropdown.innerHTML = "";
-        dropdown.style.display = "block";
-        options = matches.map((airport, index) => {
-          const item = document.createElement("div");
-          item.className = "autocomplete-item";
-          item.setAttribute('role', 'option');
-          item.id = `${dropdownId}-option-${index}`;
-          item.innerHTML = `
-                                <strong>${airport.city} (${airport.code})</strong><br>
-                                <small style="color: #666;">${airport.name}</small>
-                            `;
-          item.addEventListener("click", function () {
-            input.value = formatAirport(airport);
-            dropdown.style.display = "none";
-            input.setAttribute('aria-expanded', 'false');
-          });
-          dropdown.appendChild(item);
-          return { element: item, airport };
-        });
-        input.setAttribute('aria-expanded', 'true');
-      } else {
-        dropdown.style.display = "none";
-        input.setAttribute('aria-expanded', 'false');
-        options = [];
-      }
-    } else {
-      dropdown.style.display = "none";
-    }
-  });
-
-  input.addEventListener("keydown", function (e) {
-    const items = dropdown.querySelectorAll(".autocomplete-item");
-
-    if (e.key === "ArrowDown") {
-      e.preventDefault();
-      selectedIndex = Math.min(selectedIndex + 1, items.length - 1);
-      updateSelection(items);
-      if (selectedIndex >= 0) input.setAttribute('aria-activedescendant', items[selectedIndex].id);
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault();
-      selectedIndex = Math.max(selectedIndex - 1, -1);
-      updateSelection(items);
-      if (selectedIndex >= 0) input.setAttribute('aria-activedescendant', items[selectedIndex].id);
-      else input.removeAttribute('aria-activedescendant');
-    } else if (e.key === "Enter" && selectedIndex >= 0) {
-      e.preventDefault();
-      items[selectedIndex].click();
-      input.removeAttribute('aria-activedescendant');
-      selectedIndex = -1;
-    } else if (e.key === "Escape") {
-      dropdown.style.display = "none";
-      input.setAttribute('aria-expanded', 'false');
-      selectedIndex = -1;
-      input.removeAttribute('aria-activedescendant');
-    }
-  });
-
-  function updateSelection(items) {
-    items.forEach((item, index) => {
-      item.classList.toggle("highlighted", index === selectedIndex);
-    });
-  }
-
-  // Close dropdown when clicking outside
-  document.addEventListener("click", function (e) {
-    if (!input.contains(e.target) && !dropdown.contains(e.target)) {
-      dropdown.style.display = "none";
-  input.setAttribute('aria-expanded', 'false');
-    }
-  });
-}
-
-// Initialize autocomplete
-setupAutocomplete("from", "from-dropdown");
-setupAutocomplete("to", "to-dropdown");
-
-// Date validation
-function initializeDateInputs() {
-  const today = new Date();
-  const todayString = today.toISOString().split("T")[0];
-  const departureInput = document.getElementById("departure");
-  const returnInput = document.getElementById("return");
-
-  // Set minimum date to today
-  departureInput.setAttribute("min", todayString);
-  returnInput.setAttribute("min", todayString);
-
-  // Update return date minimum when departure date changes
-  departureInput.addEventListener("change", function () {
-    const departureDate = new Date(this.value);
-    const minReturnDate = new Date(departureDate);
-    minReturnDate.setDate(minReturnDate.getDate() + 1);
-    returnInput.setAttribute("min", minReturnDate.toISOString().split("T")[0]);
-
-    // If return date is before new minimum, update it
-    if (returnInput.value && new Date(returnInput.value) <= departureDate) {
-      returnInput.value = minReturnDate.toISOString().split("T")[0];
-    }
-  });
-}
-
-initializeDateInputs();
-
-// Form submission with enhanced feedback
-document
-  .getElementById("booking-form")
-  .addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const btn = document.getElementById("search-btn");
-    const fromValue = document.getElementById("from").value;
-    const toValue = document.getElementById("to").value;
-    const departureValue = document.getElementById("departure").value;
-    const returnValue = document.getElementById("return").value;
-    const passengersValue = document.getElementById("passengers").value;
-    const classValue = document.getElementById("class").value;
-
-    // Validation
-    if (!fromValue || !toValue || !departureValue) {
-      showNotification("Lỗi", "Vui lòng điền đầy đủ thông tin bắt buộc!", true);
-      return;
-    }
-
-    if (currentTripType === "roundtrip" && !returnValue) {
-      showNotification(
-        "Lỗi",
-        "Vui lòng chọn ngày về cho chuyến bay khứ hồi!",
-        true
-      );
-      return;
-    }
-
-    if (fromValue === toValue) {
-      showNotification(
-        "Lỗi",
-        "Điểm đi và điểm đến không được giống nhau!",
-        true
-      );
-      return;
-    }
-
-    // Show loading
-    showLoading();
-    btn.classList.add("loading");
-    btn.innerHTML = "⏳ Đang tìm kiếm...";
-    btn.disabled = true;
-
-    // Simulate API call
-    setTimeout(() => {
-      hideLoading();
-      btn.classList.remove("loading");
-      btn.innerHTML = "✅ Tìm thấy 24 chuyến bay!";
-      btn.style.background = "linear-gradient(135deg, #28a745, #20c997)";
-
-      showNotification(
-        "Tìm kiếm thành công!",
-        `Đã tìm thấy 24 chuyến bay từ ${fromValue} đến ${toValue}. Đang chuyển hướng...`
-      );
-
-          setTimeout(() => {
-            btn.innerHTML = "🔍 Tìm chuyến bay";
-            btn.style.background = "";
-            btn.disabled = false;
-
-            // In a real app, you would redirect to results page
-          }, 3000);
-    }, 2000);
-  });
-
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
@@ -393,7 +145,7 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 let lastScroll = 0;
 // Improve scroll handling: use passive listener and rAF to avoid layout thrash
 (function () {
-  const header = document.querySelector('header');
+  const header = document.querySelector("header");
   let ticking = false;
 
   function onScroll() {
@@ -402,18 +154,19 @@ let lastScroll = 0;
     if (!ticking) {
       window.requestAnimationFrame(function () {
         if (currentScroll > 100) {
-          header.style.background = 'linear-gradient(135deg, #4b7d6b 0%, #7ca194 100%)';
-          header.style.backdropFilter = 'blur(20px)';
+          header.style.background =
+            "linear-gradient(135deg, #4b7d6b 0%, #7ca194 100%)";
+          header.style.backdropFilter = "blur(20px)";
         } else {
-          header.style.background = '';
-          header.style.backdropFilter = '';
+          header.style.background = "";
+          header.style.backdropFilter = "";
         }
 
         // Hide/show header on scroll (optional)
         if (currentScroll > lastScroll && currentScroll > 200) {
-          header.style.transform = 'translateY(-100%)';
+          header.style.transform = "translateY(-100%)";
         } else {
-          header.style.transform = 'translateY(0)';
+          header.style.transform = "translateY(0)";
         }
 
         lastScroll = currentScroll;
@@ -424,20 +177,8 @@ let lastScroll = 0;
   }
 
   // Use passive listener to improve scroll performance
-  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener("scroll", onScroll, { passive: true });
 })();
-
-// Parallax effect for hero section
-// window.addEventListener("scroll", () => {
-//   const scrolled = window.pageYOffset;
-//   const hero = document.querySelector(".hero");
-//   const heroContent = document.querySelector(".hero-content");
-
-//   if (scrolled < window.innerHeight) {
-//     hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-//     heroContent.style.opacity = Math.max(0, 1 - scrolled * 0.001);
-//   }
-// });
 
 // Intersection Observer for animations
 const observerOptions = {
@@ -477,128 +218,7 @@ window.addEventListener("load", () => {
 
   // Initialize animations
   setTimeout(observeElements, 500);
-
-  // Initialize form with default values
-  const today = new Date();
-  const tomorrow = new Date(today);
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  const nextWeek = new Date(today);
-  nextWeek.setDate(nextWeek.getDate() + 7);
-
-  document.getElementById("departure").value = tomorrow
-    .toISOString()
-    .split("T")[0];
-  document.getElementById("return").value = nextWeek
-    .toISOString()
-    .split("T")[0];
-
-  // Initialize carousel
   renderNewsCarousel();
-});
-
-// Destination cards click handler
-document.querySelectorAll(".destination-card").forEach((card) => {
-  card.addEventListener("click", function () {
-    const destination = this.querySelector("h3").textContent;
-    const price = this.querySelector(".price-tag").textContent;
-
-    showNotification(
-      "Điểm đến được chọn!",
-      `${destination} - ${price}. Bạn có muốn tìm chuyến bay đến đây?`
-    );
-
-    // Auto-fill destination in booking form
-    const cityName = destination.split(",")[0];
-    const matchingAirport = airports.find((airport) =>
-      airport.city.toLowerCase().includes(cityName.toLowerCase())
-    );
-
-    if (matchingAirport) {
-      document.getElementById("to").value = formatAirport(matchingAirport);
-      document.querySelector(".hero").scrollIntoView({ behavior: "smooth" });
-    }
-  });
-});
-
-// Service items click handler
-document.querySelectorAll(".service-item").forEach((item) => {
-  item.addEventListener("click", function () {
-    const serviceName = this.querySelector("h3").textContent;
-    showNotification(
-      "Dịch vụ được chọn!",
-      `${serviceName} - Chức năng đang được phát triển.`
-    );
-  });
-});
-
-// News items click handler
-document.querySelectorAll(".news-item").forEach((item) => {
-  item.addEventListener("click", function () {
-    const newsTitle = this.querySelector(".news-title").textContent;
-    showNotification("Tin tức", `Đang mở: ${newsTitle}`);
-  });
-});
-
-// Form enhancement: Auto-complete on tab/enter
-document.querySelectorAll("#from, #to").forEach((input) => {
-  input.addEventListener("blur", function () {
-    const value = this.value.toLowerCase();
-    if (value) {
-      const match = airports.find(
-        (airport) =>
-          airport.city.toLowerCase().includes(value) ||
-          airport.code.toLowerCase().includes(value)
-      );
-
-      if (match && this.value !== formatAirport(match)) {
-        this.value = formatAirport(match);
-      }
-    }
-  });
-});
-
-// Keyboard shortcuts
-document.addEventListener("keydown", function (e) {
-  // Ctrl/Cmd + K to focus search
-  if ((e.ctrlKey || e.metaKey) && e.key === "k") {
-    e.preventDefault();
-    document.getElementById("from").focus();
-  }
-
-  // Escape to close dropdowns
-  if (e.key === "Escape") {
-    document.querySelectorAll(".autocomplete-dropdown").forEach((dropdown) => {
-      dropdown.style.display = "none";
-    });
-    document.getElementById("nav-menu").classList.remove("show");
-  }
-});
-
-// Error handling for network issues
-window.addEventListener("online", () => {
-  showNotification("Kết nối", "Đã kết nối lại internet");
-});
-
-window.addEventListener("offline", () => {
-  showNotification("Mất kết nối", "Vui lòng kiểm tra kết nối internet", true);
-});
-
-// Analytics tracking (placeholder)
-function trackEvent(category, action, label) {
-  console.log("Analytics:", { category, action, label });
-  // In real app: gtag('event', action, { category, label });
-}
-
-// Track form interactions
-document.getElementById("booking-form").addEventListener("submit", () => {
-  trackEvent("Booking", "Search", currentTripType);
-});
-
-document.querySelectorAll(".destination-card").forEach((card, index) => {
-  card.addEventListener("click", () => {
-    const destination = card.querySelector("h3").textContent;
-    trackEvent("Destination", "Click", destination);
-  });
 });
 
 // News Carousel Functionality
@@ -647,16 +267,16 @@ function renderNewsCarousel() {
     // Create pagination dot (accessible)
     const dot = document.createElement("button");
     dot.classList.add("pagination-dot");
-    dot.setAttribute('role', 'tab');
-    dot.setAttribute('aria-selected', 'false');
-    dot.setAttribute('tabindex', '-1');
+    dot.setAttribute("role", "tab");
+    dot.setAttribute("aria-selected", "false");
+    dot.setAttribute("tabindex", "-1");
     dot.dataset.slideIndex = i;
     dot.addEventListener("click", () => {
       currentNewsSlide = i;
       updateNewsCarousel();
     });
-    dot.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
+    dot.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         currentNewsSlide = i;
         updateNewsCarousel();
@@ -719,49 +339,75 @@ window.addEventListener("load", () => {
 window.addEventListener("resize", adjustNewsItemsPerSlide);
 
 // Back to top button functionality
-const backToTopBtn = document.getElementById('back-to-top');
+const backToTopBtn = document.getElementById("back-to-top");
 function checkScrollForBackToTop() {
   if (!backToTopBtn) return;
   if (window.pageYOffset > 400) {
-    backToTopBtn.classList.add('show');
+    backToTopBtn.classList.add("show");
   } else {
-    backToTopBtn.classList.remove('show');
+    backToTopBtn.classList.remove("show");
   }
 }
 
-window.addEventListener('scroll', checkScrollForBackToTop);
-window.addEventListener('load', checkScrollForBackToTop);
+window.addEventListener("scroll", checkScrollForBackToTop);
+window.addEventListener("load", checkScrollForBackToTop);
 
 if (backToTopBtn) {
-  backToTopBtn.addEventListener('click', (e) => {
+  backToTopBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
-  backToTopBtn.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
+  backToTopBtn.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   });
 }
 
 // FAQ Accordion functionality
-document.querySelectorAll('.faq-question').forEach(button => {
-    button.addEventListener('click', () => {
-        const faqItem = button.parentNode;
-        const faqAnswer = button.nextElementSibling;
+document.querySelectorAll(".faq-question").forEach((button) => {
+  button.addEventListener("click", () => {
+    const faqItem = button.parentNode;
+    const faqAnswer = button.nextElementSibling;
 
-        // Close all other open FAQ items
-        document.querySelectorAll('.faq-item').forEach(item => {
-            if (item !== faqItem) {
-                item.querySelector('.faq-question').classList.remove('active');
-                item.querySelector('.faq-answer').classList.remove('show');
-            }
-        });
-
-        // Toggle the clicked FAQ item
-        button.classList.toggle('active');
-        faqAnswer.classList.toggle('show');
+    // Close all other open FAQ items
+    document.querySelectorAll(".faq-item").forEach((item) => {
+      if (item !== faqItem) {
+        item.querySelector(".faq-question").classList.remove("active");
+        item.querySelector(".faq-answer").classList.remove("show");
+      }
     });
+
+    // Toggle the clicked FAQ item
+    button.classList.toggle("active");
+    faqAnswer.classList.toggle("show");
+  });
 });
+
+// FAQ Show More functionality
+document.getElementById("show-more-faq").addEventListener("click", function () {
+  const hiddenFAQs = document.getElementById("hidden-faqs");
+  const button = document.getElementById("show-more-faq");
+
+  if (hiddenFAQs.classList.contains("show")) {
+    hiddenFAQs.classList.remove("show");
+    button.textContent = "Xem thêm câu hỏi";
+    // Scroll to FAQ section
+    document.getElementById("faq").scrollIntoView({ behavior: "smooth" });
+  } else {
+    hiddenFAQs.classList.add("show");
+    button.textContent = "Thu gọn";
+  }
+});
+// Existing FAQ toggle functionality
+// document.querySelectorAll(".faq-question").forEach((button) => {
+//   button.addEventListener("click", () => {
+//     const answer = button.nextElementSibling;
+//     button.classList.toggle("active");
+//     answer.style.maxHeight = button.classList.contains("active")
+//       ? answer.scrollHeight + "px"
+//       : 0;
+//   });
+// });

@@ -28,7 +28,8 @@ body {
 
 /* Ensure content is not hidden behind the fixed header */
 body {
-    padding-top: 80px; /* matches header height; adjust if header height changes */
+    padding-top: 80px;
+    /* matches header height; adjust if header height changes */
 }
 
 /* Skip link for keyboard users */
@@ -43,6 +44,7 @@ body {
     border-radius: 4px;
     transition: top 0.2s ease;
 }
+
 .skip-link:focus {
     top: 1rem;
 }
@@ -74,7 +76,7 @@ body {
     }
 
     50% {
-        transform: translateY(-20px);
+        transform: translateY(-10px);
     }
 }
 
@@ -169,7 +171,7 @@ nav ul {
 
 /* Mobile menu animation: transform + opacity for smoother open/close */
 nav ul {
-    transition: transform 300ms cubic-bezier(.2,.9,.2,1), opacity 200ms ease;
+    transition: transform 300ms cubic-bezier(.2, .9, .2, 1), opacity 200ms ease;
 }
 
 nav a {
@@ -249,9 +251,6 @@ nav a:hover::after {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
     align-items: center;
     position: relative;
     z-index: 1;
@@ -267,7 +266,8 @@ nav a:hover::after {
 }
 
 .hero-text .highlight {
-    color: #c08000; /* Darker gold for better contrast */
+    color: #c08000;
+    /* Darker gold for better contrast */
     display: inline-block;
     animation: pulse 2s ease-in-out infinite;
 }
@@ -392,7 +392,8 @@ nav a:hover::after {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    min-height: 48px; /* Minimum touch target size */
+    min-height: 48px;
+    /* Minimum touch target size */
     box-sizing: border-box;
 }
 
@@ -596,7 +597,8 @@ nav a:hover::after {
 }
 
 .feature-card p {
-    color: #2c3e50; /* Changed from var(--text-light) for better contrast */
+    color: #2c3e50;
+    /* Changed from var(--text-light) for better contrast */
     line-height: 1.6;
 }
 
@@ -642,7 +644,8 @@ nav a:hover::after {
 }
 
 .service-item p {
-    color: #2c3e50; /* Changed from var(--text-light) for better contrast */
+    color: #2c3e50;
+    /* Changed from var(--text-light) for better contrast */
     font-size: 0.9rem;
 }
 
@@ -707,7 +710,8 @@ nav a:hover::after {
 }
 
 .destination-info p {
-    color: #f8f9fa; /* Changed from opacity .9 for better contrast on dark background */
+    color: #f8f9fa;
+    /* Changed from opacity .9 for better contrast on dark background */
     font-size: 0.9rem;
     opacity: 1;
     margin-bottom: 1rem;
@@ -777,7 +781,8 @@ nav a:hover::after {
 }
 
 .news-excerpt {
-    color: #2c3e50; /* Changed from var(--text-light) for better contrast */
+    color: #2c3e50;
+    /* Changed from var(--text-light) for better contrast */
     font-size: 0.9rem;
     line-height: 1.5;
 }
@@ -805,7 +810,6 @@ nav a:hover::after {
 .cta-content {
     position: relative;
     z-index: 1;
-    max-width: 800px;
     margin: 0 auto;
     padding: 0 2rem;
 }
@@ -817,7 +821,8 @@ nav a:hover::after {
 }
 
 .cta-content p {
-    color: #ffffff; /* Ensure white text on primary gradient background */
+    color: #ffffff;
+    /* Ensure white text on primary gradient background */
     font-size: 1.2rem;
     margin-bottom: 2rem;
 }
@@ -924,14 +929,44 @@ nav a:hover::after {
 }
 
 .faq-answer p {
-    color: #2c3e50; /* Changed from var(--text-light) for better contrast */
+    color: #2c3e50;
+    /* Changed from var(--text-light) for better contrast */
     padding-top: 1.5rem;
     line-height: 1.6;
 }
 
 .faq-answer.show {
-    max-height: 500px; /* Adjust as needed */
+    max-height: 1000px;
+    /* Adjust as needed */
     padding: 0 2rem 1.5rem;
+}
+
+.faq-hidden {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+}
+
+.faq-hidden.show {
+    max-height: 3000px;
+    transition: max-height 0.5s ease-in;
+}
+
+.show-more-btn {
+    display: block;
+    margin: 2rem auto;
+    padding: 1rem 2rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.show-more-btn:hover {
+    background-color: var(--secondary-color);
 }
 
 /* App Section */
@@ -957,7 +992,8 @@ nav a:hover::after {
 }
 
 .app-info p {
-    color: #2c3e50; /* Changed from var(--text-light) for better contrast */
+    color: #2c3e50;
+    /* Changed from var(--text-light) for better contrast */
     margin-bottom: 2rem;
     font-size: 1.1rem;
 }
@@ -1067,7 +1103,8 @@ footer {
 }
 
 .footer-section a {
-    color: #2c3e50; /* Changed from var(--text-light) for better contrast */
+    color: #2c3e50;
+    /* Changed from var(--text-light) for better contrast */
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -1077,7 +1114,8 @@ footer {
 }
 
 .footer-section p {
-    color: #2c3e50; /* Changed from var(--text-light) for better contrast */
+    color: #2c3e50;
+    /* Changed from var(--text-light) for better contrast */
     line-height: 1.6;
 }
 
@@ -1091,7 +1129,8 @@ footer {
     width: 40px;
     height: 40px;
     background: var(--bg-light);
-    color: #2c3e50; /* Ensure social links have enough contrast on light background */
+    color: #2c3e50;
+    /* Ensure social links have enough contrast on light background */
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1109,7 +1148,8 @@ footer {
     text-align: center;
     padding-top: 2rem;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
-    color: #2c3e50; /* Ensure copyright text has enough contrast on light background */
+    color: #2c3e50;
+    /* Ensure copyright text has enough contrast on light background */
 }
 
 /* Trust badges */
@@ -1247,13 +1287,16 @@ footer {
     nav {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
-        scrollbar-width: none; /* Firefox */
-        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
+        -ms-overflow-style: none;
+        /* IE and Edge */
         margin-left: 1rem;
     }
 
     nav::-webkit-scrollbar {
-        display: none; /* Chrome, Safari and Opera */
+        display: none;
+        /* Chrome, Safari and Opera */
     }
 
     nav ul {
@@ -1310,16 +1353,18 @@ footer {
         flex-direction: column;
         padding: 0 1rem;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        max-height: 0; /* collapsed */
+        max-height: 0;
+        /* collapsed */
         overflow: hidden;
         opacity: 0;
         transform: translateY(-10px);
-        transition: max-height 320ms ease, opacity 220ms ease, transform 320ms cubic-bezier(.2,.9,.2,1);
+        transition: max-height 320ms ease, opacity 220ms ease, transform 320ms cubic-bezier(.2, .9, .2, 1);
         pointer-events: none;
     }
 
     nav ul.show {
-        max-height: 600px; /* enough to reveal items; adjust if needed */
+        max-height: 600px;
+        /* enough to reveal items; adjust if needed */
         opacity: 1;
         transform: translateY(0);
         padding: 1rem;
@@ -1463,7 +1508,8 @@ footer {
 }
 
 .notification-message {
-    color: #2c3e50; /* Changed from var(--text-light) for better contrast */
+    color: #2c3e50;
+    /* Changed from var(--text-light) for better contrast */
     font-size: 0.9rem;
 }
 
@@ -1617,7 +1663,7 @@ footer {
     background: var(--primary-color);
     color: var(--white);
     border: none;
-    box-shadow: 0 6px 18px rgba(45,90,71,0.3);
+    box-shadow: 0 6px 18px rgba(45, 90, 71, 0.3);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -1637,5 +1683,5 @@ footer {
 
 .back-to-top:focus {
     outline: 2px solid #fff;
-    box-shadow: 0 0 0 4px rgba(75,125,107,0.15);
+    box-shadow: 0 0 0 4px rgba(75, 125, 107, 0.15);
 }
