@@ -793,7 +793,7 @@ nav a:hover::after {
     background: var(--gradient-primary);
     text-align: center;
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .cta-section::before {
@@ -1076,6 +1076,12 @@ footer {
     color: var(--text-dark);
     padding: 3rem 0 1rem;
     box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+}
+
+#contact h2 {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px 32px 32px;
 }
 
 .footer-content {
