@@ -238,7 +238,7 @@ function createNewsItemHTML(article) {
             <div class="news-image" style="background: url(${article.image});"></div>
             <div class="news-content">
                 <div class="news-date">${article.date}</div>
-                <div class="news-title">${article.title}</div>
+                <h3 class="news-title">${article.title}</h3>
                 <div class="news-excerpt">${article.excerpt}</div>
             </div>
         </div>
