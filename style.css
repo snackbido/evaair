@@ -282,8 +282,32 @@ nav a:hover::after {
 .hero-stats {
     display: flex;
     gap: 2rem;
-    margin-top: 2rem;
+    margin: 2rem 0;
     animation: fadeInUp 0.8s ease 0.4s backwards;
+}
+
+.hero .order-now {
+    animation: fadeInUp 0.8s ease;
+}
+
+.order-now {
+    max-width: 340px;
+    background: linear-gradient(135deg, var(--accent-color), #ff8c57);
+    font-size: 18px;
+    font-weight: 600;
+    padding: 20px;
+    border-radius: 50px;
+    transition: all 0.3s ease-out, opacity 0.3s ease 0.5s;
+}
+
+.order-now:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.order-now a {
+    color: var(--white);
+    text-decoration: none;
 }
 
 .stat-item {
@@ -801,7 +825,7 @@ nav a:hover::after {
     position: absolute;
     top: -50%;
     left: -50%;
-    width: 200%;
+    /* width: 200%; */
     height: 200%;
     background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
     animation: float 10s ease-in-out infinite;
@@ -1146,7 +1170,7 @@ footer {
 }
 
 .social-links a:hover {
-    background: var(--secondary-color);
+    background: #eff1f1;
     color: var(--white);
     transform: translateY(-3px);
 }
@@ -1232,6 +1256,11 @@ footer {
     .hero-text p {
         font-size: 1rem;
     }
+
+    .order-now {
+        margin: 0 auto;
+        font-size: 16px;
+    }
 }
 
 /* Galaxy Z Fold 5 Specific */
@@ -1258,6 +1287,13 @@ footer {
     .hero-content {
         padding: 3rem 0.5rem 1rem;
     }
+
+    .order-now {
+        margin: 0 auto;
+        font-size: 16px;
+
+    }
+
 }
 
 /* Responsive Design */
@@ -1282,6 +1318,11 @@ footer {
 
     .cta-button {
         padding: 0.5rem 1rem;
+    }
+
+    .order-now {
+        /* margin: 0 auto; */
+        font-size: 16px;
     }
 }
 
@@ -1341,6 +1382,10 @@ footer {
 
     .hero-stats {
         justify-content: center;
+    }
+
+    .order-now {
+        margin: 0 auto
     }
 }
 
@@ -1691,4 +1736,95 @@ footer {
 .back-to-top:focus {
     outline: 2px solid #fff;
     box-shadow: 0 0 0 4px rgba(75, 125, 107, 0.15);
+}
+
+.contact-buttons {
+    position: fixed;
+    bottom: 80px;
+    /* Đặt cao hơn nút back-to-top */
+    right: 15px;
+    /* Thay đổi từ left thành right */
+    left: auto;
+    /* Reset left position */
+    z-index: 999;
+}
+
+.contact-toggle {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-toggle:hover {
+    transform: scale(1.1);
+}
+
+.contact-list {
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.contact-list.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.contact-item {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.contact-item:hover {
+    transform: scale(1.1);
+}
+
+.contact-phone {
+    background: #25D366;
+}
+
+.contact-messenger {
+    background: #0084FF;
+}
+
+.contact-viber {
+    background: #7360F2;
+}
+
+.contact-telegram {
+    background: #0088cc;
+}
+
+.contact-zalo {
+    background: #0068FF;
+}
+
+.contact-whatsapp {
+    background: #25D366;
 }

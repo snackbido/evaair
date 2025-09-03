@@ -411,3 +411,26 @@ document.getElementById("show-more-faq").addEventListener("click", function () {
 //       : 0;
 //   });
 // });
+const contactToggle = document.getElementById("contactToggle");
+const contactList = document.getElementById("contactList");
+let isContactOpen = false;
+
+contactToggle.addEventListener("click", () => {
+  isContactOpen = !isContactOpen;
+  if (isContactOpen) {
+    contactList.classList.add("show");
+    contactToggle.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+  } else {
+    contactList.classList.remove("show");
+    contactToggle.innerHTML = '<i class="fa-solid fa-comments"></i>';
+  }
+});
+
+// // Close contact buttons when clicking outside
+// document.addEventListener("click", (e) => {
+//   if (!e.target.closest(".contact-buttons") && isContactOpen) {
+//     contactList.classList.remove("show");
+//     contactToggle.innerHTML = '<i class="fa-solid fa-comments"></i>';
+//     isContactOpen = false;
+//   }
+// });
