@@ -6,7 +6,7 @@ const newsArticles = [
     excerpt:
       "Eva Air hân hạnh thông báo ra mắt tuyến bay thẳng mới từ TP.HCM đến Sydney, Úc, bắt đầu từ ngày 1 tháng 10 năm 2024. Đặt vé máy bay Eva Air ngay để nhận ưu đãi đặc biệt!",
     image:
-      "https://media.istockphoto.com/id/183214684/photo/runway.jpg?s=612x612&w=0&k=20&c=X2JeeXo4QIIpRU--NcAd8jjzuP7WW5V7RRV263zd4fs=",
+      "https://res.cloudinary.com/dyp4yk66w/image/upload/v1763347301/runway_xhi8bc.jpg",
   },
   {
     title:
@@ -15,7 +15,7 @@ const newsArticles = [
     excerpt:
       "Trải nghiệm dịch vụ đẳng cấp với vé hạng thương gia đi các thành phố lớn Châu Âu trên chuyến bay Eva Air. Giảm ngay 30% khi đặt trước ngày 30 tháng 9.",
     image:
-      "https://image.shutterstock.com/image-photo/great-rocky-walls-odle-dolomites-260nw-2120625833.jpg",
+      "https://res.cloudinary.com/dyp4yk66w/image/upload/deal-euro_gr3nsk.jpg",
   },
   {
     title:
@@ -24,7 +24,7 @@ const newsArticles = [
     excerpt:
       "Chúng tôi tự hào thông báo Eva Air đã được Tổ chức Đánh giá Hàng không Quốc tế (VQAR) trao tặng danh hiệu Hãng Hàng Không 5 Sao về chất lượng dịch vụ các chuyến bay của Eva Air.",
     image:
-      "https://www.shutterstock.com/image-vector/golden-laurel-crown-text-realistic-260nw-2434171633.jpg",
+      "https://res.cloudinary.com/dyp4yk66w/image/upload/v1763347263/award_adcshs.jpg",
   },
   {
     title: "Mẹo Du Lịch An Toàn Mùa Cao Điểm Cùng Eva Air",
@@ -32,14 +32,14 @@ const newsArticles = [
     excerpt:
       "Bí quyết để có chuyến đi suôn sẻ và an toàn trong mùa du lịch cao điểm. Đừng bỏ lỡ những lời khuyên hữu ích từ Eva Air để kiểm tra chuyến bay của bạn!",
     image:
-      "https://static.fishingbooker.com/public/images/destination/baners/c9ea93a7b748ae3069e7257ecc6a61e6.jpg",
+      "https://res.cloudinary.com/dyp4yk66w/image/upload/v1763347247/travel_trwecg.jpg",
   },
   {
     title: "Khám Phá Đài Loan với Vé Máy Bay Eva Air Giá Rẻ",
     date: "25 Thg 7, 2024",
     excerpt:
       "Đài Loan không chỉ nổi tiếng với trà sữa và ẩm thực đường phố, mà còn có vô vàn cảnh đẹp và trải nghiệm văn hóa độc đáo đang chờ bạn khám phá. Tìm vé máy bay Eva Air đi Đài Loan ngay!",
-    image: "https://live.staticflickr.com/8259/8627416075_2393b6d3b3.jpg",
+    image: "https://res.cloudinary.com/dyp4yk66w/image/upload/v1763347219/eva-air/taiwan_ec3kmq.jpg",
   },
   {
     title: "Chính Sách Hành Lý Mới Nhất Của Hãng Hàng Không Eva Air",
@@ -47,7 +47,7 @@ const newsArticles = [
     excerpt:
       "Cập nhật những thay đổi mới nhất về chính sách hành lý của Eva Air. Đảm bảo chuyến đi của bạn được thuận tiện nhất với hãng hàng không Eva Air.",
     image:
-      "https://www.shutterstock.com/shutterstock/videos/1039097177/thumb/8.jpg?ip=x480",
+      "https://res.cloudinary.com/dyp4yk66w/image/upload/v1763347186/eva-air/policy_xtrh0z.jpg",
   },
 ];
 
@@ -154,8 +154,7 @@ let lastScroll = 0;
     if (!ticking) {
       window.requestAnimationFrame(function () {
         if (currentScroll > 100) {
-          header.style.background =
-            "linear-gradient(135deg, #4b7d6b 0%, #7ca194 100%)";
+          // header.style.background =
           header.style.backdropFilter = "blur(20px)";
         } else {
           header.style.background = "";
@@ -413,7 +412,7 @@ document.getElementById("show-more-faq").addEventListener("click", function () {
 // });
 const contactToggle = document.getElementById("contactToggle");
 const contactList = document.getElementById("contactList");
-let isContactOpen = false;
+let isContactOpen = true;
 
 contactToggle.addEventListener("click", () => {
   isContactOpen = !isContactOpen;
